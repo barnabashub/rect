@@ -25,7 +25,7 @@ Edit `redirects.json` to include your desired slugs and destination URLs:
   "social": "[https://twitter.com/yourhandle](https://twitter.com/yourhandle)"
 }
 ```
-3. Deployment
+### 3. Deployment
 Push your changes to the main branch.
 
 The GitHub Action will automatically trigger, run the Python generator, and push the results to a gh-pages branch.
@@ -38,7 +38,9 @@ Select the gh-pages branch and / (root) folder.
 
 Click Save.
 
-Your links will now be live at https://yourusername.github.io/slug.
+Your links will now be live at https://yourusername.github.io/rect.
+
+---
 
 🛠 Tech Stack
 Logic: Python 3 (Static Generator)
@@ -62,18 +64,11 @@ index.html: The public-facing landing page.
 
 .github/workflows/deploy.yml: The automation script.
 
+---
+
 🤝 Contributing
 Contributions are welcome! Whether it's a new feature, a bug fix, or a UI improvement, feel free to open a Pull Request.
 
-Fork the Project
-
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-
-Push to the Branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
 
 ⚖️ License
 Distributed under the MIT License. See LICENSE for more information.
