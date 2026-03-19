@@ -1,22 +1,38 @@
 import json
 import os
+import shutil
 
-def generate_redirects():
-    # Load the redirect data
-    with open('redirects.json', 'r') as f:
+# Configuration
+BUILD_DIR = "public"
+REDIRECT_TEMPLATE = "redirect-template.html"
+DATA_FILE = "redirects.json"
+STATIC_FILES = ["index.html", "404.html"]
+
+def build():
+    # 1. Clean and create build directory
+    if os.path.exists(BUILD_DIR):
+        shutil.rmtree(BUILD_DIR)
+    os.makedirs(BUILD_DIR)
+
+    # 2. Copy static UI files to build directory
+    for file in STATIC_FILES:
+        if os.path.exists(file):
+            shutil.copy(file, os.path.join(BUILD_DIR, file))
+
+    # 3. Load redirects
+    with open(DATA_FILE, 'r') as f:
         redirects = json.load(f)
 
-    # Load the HTML template
-    with open('redirect-template.html', 'r') as f:
+    with open(REDIRECT_TEMPLATE, 'r') as f:
         template = f.read()
 
-    # Create directories and index files for each slug
+    # 4. Generate redirect folders inside BUILD_DIR
     for slug, url in redirects.items():
-        os.makedirs(slug, exist_ok=True)
-        with open(f"{slug}/index.html", "w", encoding="utf-8") as f:
-            # Inject the target URL into the template
+        slug_path = os.path.join(BUILD_DIR, slug)
+        os.makedirs(slug_path, exist_ok=True)
+        with open(os.path.join(slug_path, "index.html"), "w", encoding="utf-8") as f:
             f.write(template.replace("{{URL}}", url))
-        print(f"✅ Generated: /{slug} -> {url}")
+        print(f"✅ Generated: {BUILD_DIR}/{slug}/index.html")
 
 if __name__ == "__main__":
-    generate_redirects()
+    build()
