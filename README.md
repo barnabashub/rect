@@ -10,6 +10,17 @@
 
 ---
 
+## How It Works
+
+1. **Source:** You manage `redirects.json` and your UI templates in the root.
+2. **Build:** The Python script (`generator.py`) wipes the `public/` folder and regenerates everything:
+   - Copies `index.html` and `404.html`.
+   - Creates a folder for each **slug** (e.g., `/fb`, `/twitter`).
+   - Places a redirecting `index.html` inside each slug folder.
+3. **Deploy:** GitHub Actions deploys **only** the contents of the `public/` folder to the web.
+
+---
+
 ## 🚀 Getting Started
 
 ### 1. Setup the Repository
@@ -51,18 +62,12 @@ Hosting: GitHub Pages
 
 Styling: Modern CSS3 with Glassmorphism effects
 
-📁 File Structure
-redirects.json: Your link database.
+📁 Project Structure
 
-generator.py: The engine that builds the directory structure.
-
-redirect-template.html: The HTML snippet used for each redirect.
-
-index.html: The public-facing landing page.
-
-404.html: The custom error page for broken links.
-
-.github/workflows/deploy.yml: The automation script.
+- redirects.json: Your link database.
+- generator.py: The engine that builds the directory structure.
+- public/ — (Generated) This is what actually goes live.
+- .github/workflows/deploy.yml: The automation script.
 
 ---
 
