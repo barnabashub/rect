@@ -23,34 +23,45 @@
 
 ## 🚀 Getting Started
 
-### 1. Setup the Repository
-1. **Fork** this repository or create a new one using these files.
-2. Ensure you have a `redirects.json` file in the root directory.
+1. Setup the Repository
+Fork this repository or create a new one using these files.
 
-### 2. Configure Your Links
-Edit `redirects.json` to include your desired slugs and destination URLs:
-```json
+Enable Write Permissions (Crucial for the automation):
+
+Go to Settings > Actions > General.
+
+Scroll to Workflow permissions.
+
+Select Read and write permissions and click Save.
+
+2. Configure Your Links
+Edit redirects.json in the root directory to include your desired slugs and destination URLs:
+
+JSON
 {
-  "gh": "[https://github.com/yourusername/rect](https://github.com/yourusername/rect)",
-  "blog": "[https://yourwebsite.com/posts/my-awesome-article](https://yourwebsite.com/posts/my-awesome-article)",
-  "social": "[https://twitter.com/yourhandle](https://twitter.com/yourhandle)"
+  "gh": "https://github.com/yourusername/slynk",
+  "demo": "https://example.com/live-demo"
 }
-```
-### 3. Deployment
+
+3. Automatic Build
 Push your changes to the main branch.
 
-The GitHub Action will automatically trigger, run the Python generator, and push the results to a gh-pages branch.
+Click the Actions tab at the top to watch the "Build & Deploy" workflow.
 
-Go to Settings > Pages in your GitHub repo:
+Once it finishes (green checkmark), a new branch called gh-pages will be created automatically.
 
-Under Build and deployment, set the source to Deploy from a branch.
+4. Enable GitHub Pages
+Go to Settings > Pages.
 
-Select the gh-pages branch and / (root) folder.
+Under Build and deployment > Branch:
+
+Select gh-pages.
+
+Ensure the folder is set to /(root).
 
 Click Save.
 
-Your links will now be live at https://yourusername.github.io/rect.
-
+Your links will be live at https://yourusername.github.io/slug within a minute!
 ---
 
 🛠 Tech Stack
